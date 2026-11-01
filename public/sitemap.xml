@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gstech.dev/</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/aca-connect</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/aca-connect</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/aca-ministries</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/aca-ministries</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/campus-water</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/campus-water</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/gst-calculator</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/gst-calculator</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/hsn-calculator</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/hsn-calculator</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/blood-donation</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/blood-donation</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/gama-java-atm</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/gama-java-atm</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gstech.dev/work/image-to-svg</loc>
+    <loc>https://gs-tech-portfolio.netlify.app/work/image-to-svg</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
   </url>

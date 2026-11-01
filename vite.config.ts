@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
  */
 function preloadCriticalFonts(): Plugin {
   const wanted = [
-    'space-grotesk-latin-wght-normal',
+    'fraunces-latin-wght-normal',
     'instrument-serif-latin-400-normal',
     'instrument-serif-latin-400-italic',
     'inter-latin-wght-normal',

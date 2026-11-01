@@ -1,24 +1,25 @@
 :root {
-  /* Canvas */
-  --paper: #f3eee4;
-  --paper-2: #e9e1d2;
-  --paper-3: #ded3bf;
-  --ink: #151412;
-  --ink-2: #2b2824;
-  --muted: #6f675b;
-  --line: rgba(21, 20, 18, 0.15);
-  --line-strong: rgba(21, 20, 18, 0.34);
+  /* Luxury palette — warm ivory, charcoal, soft stone, muted olive, warm grey */
+  --paper: #f5f3ee;
+  --paper-2: #e7e4dc;
+  --paper-3: #dbd8ce;
+  --ink: #22221f;
+  --ink-2: #3b3a35;
+  --muted: #77766f;
+  --olive: #85856b;
+  --line: rgba(34, 34, 31, 0.14);
+  --line-strong: rgba(34, 34, 31, 0.36);
 
   /* Dark canvas */
-  --charcoal: #141311;
-  --charcoal-2: #1c1a17;
-  --charcoal-3: #26231f;
-  --on-dark: #f1ebdf;
-  --on-dark-muted: #a69d8e;
-  --line-dark: rgba(241, 235, 223, 0.16);
-  --line-dark-strong: rgba(241, 235, 223, 0.34);
+  --charcoal: #20211f;
+  --charcoal-2: #282926;
+  --charcoal-3: #34332d;
+  --on-dark: #f2efe8;
+  --on-dark-muted: #b0a898;
+  --line-dark: rgba(242, 239, 232, 0.14);
+  --line-dark-strong: rgba(242, 239, 232, 0.36);
 
-  /* Accent — signal vermilion */
+  /* Accent — warm signal red */
   --accent: #d8431c;
   --accent-deep: #a62e0f;
   --accent-bright: #ff5a30;
@@ -30,16 +31,16 @@
   --status-proto: #967023;
   --status-concept: #857c6f;
 
-  /* Type */
-  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  /* Type — editorial serif display + clean sans body */
+  --font-display: 'Fraunces Variable', 'Instrument Serif', Georgia, serif;
   --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
   --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', Menlo, monospace;
 
   /* Fluid type */
-  --text-hero: clamp(2.9rem, 5.7vw, 6.6rem);
-  --text-display: clamp(2.4rem, 4.9vw, 5.4rem);
-  --text-h2: clamp(2rem, 3.9vw, 4.2rem);
+  --text-hero: clamp(3rem, 6vw, 7rem);
+  --text-display: clamp(2.6rem, 5vw, 5.4rem);
+  --text-h2: clamp(2.1rem, 4vw, 4.2rem);
   --text-h3: clamp(1.4rem, 2vw, 2.1rem);
   --text-h4: clamp(1.1rem, 1.35vw, 1.35rem);
   --text-lead: clamp(1.02rem, 1.15vw, 1.22rem);
@@ -88,9 +89,8 @@
 .theme-paper-2 {
   --bg: var(--paper-2);
   --fg: var(--ink);
-  /* Slightly darker than --muted for 4.5:1 on paper-2. */
   --fg-muted: #5f594e;
-  --hairline: rgba(21, 20, 18, 0.16);
-  --hairline-strong: rgba(21, 20, 18, 0.36);
+  --hairline: rgba(34, 34, 31, 0.16);
+  --hairline-strong: rgba(34, 34, 31, 0.36);
   --focus: var(--accent-deep);
 }
