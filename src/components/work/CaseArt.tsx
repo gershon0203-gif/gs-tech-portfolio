@@ -4,7 +4,7 @@ import type { Project } from '../../data/projects'
  * Art-directed case plates. These are editorial compositions, NOT fake
  * screenshots — except ACA Ministries, which uses real project photography.
  */
-export function CaseArt({ project, compact = false }: { project: Project; compact?: boolean }) {
+export function CaseArt({ project, compact }: { project: Project; compact?: boolean }) {
   const { visual, images, number, title } = project
 
   return (
@@ -169,7 +169,7 @@ export function CaseArt({ project, compact = false }: { project: Project; compac
             />
             <path
               d="M128 132h-14v-14h-16v14H84v16h14v14h16v-14h14z"
-              fill="#f3eee4"
+              fill="#e7f1fc"
             />
           </svg>
           <div className="plate-blood__chips">

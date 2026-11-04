@@ -1,110 +1,109 @@
-import { ArrowUp } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { ArrowUp, ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { site } from '../../data/site'
-import { scrollToSection, scrollToTop } from '../../lib/motion'
+import { scrollToTop } from '../../lib/motion'
 import { useLocalTime } from '../../lib/useLocalTime'
 
 const footerNav = [
-  { id: 'story', label: 'Story' },
-  { id: 'work', label: 'Selected work' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'process', label: 'How I build' },
-  { id: 'contact', label: 'Contact' },
+  { to: '/', label: '00 / Hall' },
+  { to: '/about', label: '01 / About' },
+  { to: '/projects', label: '02 / Projects' },
+  { to: '/expertise', label: '03 / Expertise' },
+  { to: '/contact', label: '04 / Contact' },
 ]
 
 export function Footer() {
   const time = useLocalTime(site.timeZone)
-  const location = useLocation()
   const year = new Date().getFullYear()
-  const isHome = location.pathname === '/'
-
-  const handleAnchor = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    if (!isHome) return
-    event.preventDefault()
-    scrollToSection(id)
-    window.history.replaceState(null, '', `/#${id}`)
-  }
 
   return (
-    <footer className="site-footer theme-dark" id="footer">
+    <footer className="site-footer" id="footer">
       <div className="shell">
-        <div className="footer-top">
+        <div className="footer-callout">
           <div>
-            <span className="eyebrow">
-              <span className="eyebrow__index">09</span>
-              <span aria-hidden="true">/</span>
-              Colophon
+            <span className="hud">
+              <span className="hud__index">04</span> / The last door
             </span>
-            <p className="footer-tagline">
-              Made with curiosity. Shaped by creativity. Built with code.
-            </p>
+            <h2 className="footer-callout__title">
+              The hall is open.
+              <br />
+              <span className="serif">What is behind yours?</span>
+            </h2>
+          </div>
+          <Link to="/contact" className="footer-callout__cta" data-cursor="Open">
+            <span>Open the last door</span>
+            <ArrowUpRight size={30} strokeWidth={1.2} aria-hidden="true" />
+          </Link>
+        </div>
+
+        <div className="footer-grid">
+          <div className="footer-brand">
             <div className="footer-wordmark" aria-label="GS TECH">
-              Gs<span aria-hidden="true" />tech
+              GS<span aria-hidden="true" />TECH
             </div>
+            <p className="footer-tagline">
+              An architectural portfolio of four rooms — built around the idea that every
+              door opens a new possibility. Designed and developed from Chennai.
+            </p>
+            <span className="footer-est">
+              The doorway / independent practice / est. {site.established}
+            </span>
           </div>
 
-          <div className="footer-cols">
-            <div className="footer-col">
-              <h2>Index</h2>
-              <ul>
-                {footerNav.map((item) => (
-                  <li key={item.id}>
-                    <Link to={`/#${item.id}`} onClick={(event) => handleAnchor(event, item.id)}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="footer-col">
+            <h3>Rooms</h3>
+            <ul>
+              {footerNav.map((item) => (
+                <li key={item.to}>
+                  <Link to={item.to}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="footer-col">
-              <h2>Elsewhere</h2>
-              <ul>
-                {site.socials.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label={`${social.label} — external profile`}
-                    >
-                      {social.label} ↗
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="footer-col">
+            <h3>Elsewhere</h3>
+            <ul>
+              {site.socials.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={`${social.label} — external profile`}
+                  >
+                    {social.label} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="footer-col">
-              <h2>Say hello</h2>
-              <p>
-                <a href={`mailto:${site.email}`} className="footer-email">
-                  {site.email}
-                </a>
-              </p>
-              <p style={{ marginTop: 10 }}>
-                {site.location}
-                <br />
-                {time} IST
-              </p>
-              <span className="footer-availability">
-                <span className="status__dot" aria-hidden="true" />
-                {site.availability.open ? 'Open to internships' : 'Currently unavailable'}
-              </span>
-            </div>
+          <div className="footer-col footer-col--direct">
+            <h3>Direct</h3>
+            <a href={`mailto:${site.email}`} className="footer-email">
+              {site.email}
+            </a>
+            <p>
+              {site.location}
+              <br />
+              {time} IST
+            </p>
+            <span className="footer-availability">
+              <span className="status__dot" aria-hidden="true" />
+              {site.availability.open ? 'Open to internships' : 'Currently unavailable'}
+            </span>
           </div>
         </div>
 
         <div className="footer-bottom">
           <div className="footer-bottom__meta">
-            <span>
-              © {year} GS TECH — Gershon S
-            </span>
+            <span>© {year} GS TECH — Gershon S</span>
             <span aria-hidden="true">/</span>
-            <span>Designed &amp; built from scratch</span>
+            <span>The doorway / four rooms / one practice</span>
           </div>
           <button type="button" className="footer-top-btn" onClick={scrollToTop}>
-            Back to top
+            Return to the threshold
             <span aria-hidden="true">
               <ArrowUp size={14} />
             </span>

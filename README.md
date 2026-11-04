@@ -1,6 +1,6 @@
 # GS TECH — Portfolio
 
-The personal portfolio of **Gershon S** (GS TECH): an editorial, motion-led site built around an interactive 3D workbench, eight honest case studies, and a contact form that never fakes a delivery.
+The portfolio of **Gershon S** (GS TECH): an editorial, motion-led site built around an interactive 3D "doorway" — a front door with four arched doors, each opening into a room of the site (Work, Projects, About, Expertise) — and a light/dark theme pair connected by a pull-rope.
 
 Built with React 19, TypeScript, Vite 6, React Three Fiber, GSAP and Lenis. No UI framework or CSS-in-JS — the design is a small set of hand-written CSS files.
 
@@ -24,12 +24,13 @@ Requires Node 20+ (built and tested on Node 24).
 
 | Area | Implementation |
 | --- | --- |
-| Home | Intro, interactive 3D hero, story, selected work, skills, process, explorations, contact, footer |
-| Case studies | Eight routes at `/work/:slug`, with status, problem, contribution, scope, challenges, learnings, imagery and next steps |
-| 3D hero | React Three Fiber workbench: pointer parallax, scroll-driven camera, three screen modes, click-to-change, reduced-motion and no-WebGL fallback |
-| Motion | GSAP + ScrollTrigger for scroll effects and reveals; Lenis for smooth scroll; CSS transitions for UI |
-| Styling | Design tokens, fluid type, container-query case plates, dark/light sections |
-| Accessibility | Semantic landmarks, skip link, keyboard-operable menu and scene, visible focus, reduced-motion support, labelled form errors |
+| Routes | `/` Home · `/about` · `/projects` · `/expertise` · `/contact` · `/work/:slug` (eight case studies) · `*` 404 |
+| Home | Intro, interactive 3D hero (the doorway), selected work, invite, footer |
+| 3D hero | React Three Fiber hall of four doors: pointer parallax, hover glow, click-to-open navigation, reduced-motion and no-WebGL fallback (architectural DOM doors), opt-out on small/touch devices |
+| Two worlds | Light "editorial paper" and dark "matte charcoal" themes, toggled by the hanging rope (keyboard accessible) or the header button; persisted in `localStorage`; follows `prefers-color-scheme` on first visit |
+| Motion | GSAP + IntersectionObserver reveals (batched, with a 2 s failsafe so content never stays hidden); Lenis smooth scroll; CSS transitions for UI |
+| Styling | Design tokens (`tokens.css`), fluid type, hand-written sections — no framework |
+| Accessibility | Semantic landmarks, skip link, keyboard-operable menu and scene, visible focus, reduced-motion support, labelled form errors, failsafe reveal |
 | SEO | Per-page title/description/canonical, Open Graph + Twitter cards, JSON-LD, `robots.txt`, `sitemap.xml` |
 | Contact | Client validation, loading/error/success states, honeypot + timing trap, Netlify function + Resend, mailto fallback |
 
@@ -37,15 +38,18 @@ Requires Node 20+ (built and tested on Node 24).
 
 ```
 src/
-  components/     layout, UI primitives, 3D scene, case artwork
-  data/           site config + editable content (projects, story, skills, process, explorations)
-  lib/            motion setup, media-query hooks, small utilities
-  pages/          Home, CaseStudy, NotFound
-  sections/       page sections and the contact form
-  styles/         tokens, base, layout, sections, case-study styles
+  components/     layout (Header/Footer/Intro/ScrollProgress), UI primitives,
+                  doorway 3D scene (DoorwayScene/DoorGrid/DoorwayStage),
+                  rope theme toggle, experience (custom cursor), case artwork
+  data/           site config + editable content (doors, projects, story, skills, process)
+  lib/            motion setup, theme context, media-query hooks, utilities
+  pages/          Home, About, Projects, Expertise, Contact, CaseStudy, NotFound
+  sections/       ContactForm (the only remaining section)
+  styles/         tokens, base, layout, pages (page heroes/gallery/skill board),
+                  sections, case study, cinematic, experience, doorway
 netlify/functions/contact.mjs   contact handler (Resend)
-public/           images, favicon, robots.txt, sitemap.xml, OG image
 docs/             repository audit and implementation plan
+public/           images, favicon, robots.txt, sitemap.xml, OG image
 ```
 
 ### Editing content
@@ -53,25 +57,25 @@ docs/             repository audit and implementation plan
 Everything user-facing lives in `src/data/`. Start with:
 
 - `site.ts` — name, availability, email, socials, domain, contact endpoint
+- `doors.ts` — the four doors (labels, finishes, routes, 3D positions)
 - `projects.ts` — the eight case studies (status, stack, narrative, images)
-- `story.ts`, `skills.ts`, `process.ts`, `explorations.ts` — the remaining sections
+- `story.ts`, `skills.ts`, `process.ts` — the About and Expertise sections
 
-**Read `CONTENT-TODO.md` before launch.** Some values are deliberate placeholders, and some project details still need confirmation.
+**Read `CONTENT-TODO.md` before launch.** Some project details still need confirmation.
 
 ---
 
-## The 3D hero
+## The doorway (3D hero)
 
-`src/components/three/Workbench.tsx` builds a desk scene from primitives — monitor, keyboard, stacked cards, an idea object and a ring — with no external models or textures. It:
+`src/components/doorway/DoorwayScene.tsx` builds a night hall from primitives — arched doors, frames, pendant lights, floor glow — with no external models or textures. It:
 
 - eases the camera toward the pointer for parallax;
-- moves the camera as the hero scrolls out of view;
-- changes the monitor's screen mode on click / keyboard activation;
-- reduces DPR, disables antialiasing and limits scene detail on small screens;
-- falls back to `StaticHeroArt` when WebGL is unavailable, reduced motion is requested, loading is slow, or the scene errors;
-- keeps the static composition on small or touch-first devices and offers an explicit **Load interactive 3D** button, so the 1 MB scene bundle never competes with the first paint.
+- opens the door on click / keyboard activation and navigates to the matching route;
+- reduces DPR and disables antialiasing on smaller screens;
+- falls back to `DoorGrid` (DOM doors with the same geometry language) when WebGL is unavailable, reduced motion is requested, the device is small/touch-first, or the scene errors (error boundary);
+- is lazy-loaded so it never blocks first paint.
 
-On larger screens the scene is lazy-loaded after first paint so it never blocks the initial render.
+On small or touch-first devices the DOM doors render instead of the 3D scene, so the ~900 kB scene chunk is never downloaded there.
 
 ---
 
@@ -130,21 +134,20 @@ The contact function only runs on Netlify as written. Elsewhere, either deploy a
 
 ### Before going live
 
-- Replace the placeholder email, social URLs and domain (see `CONTENT-TODO.md`).
-- Confirm every project status and any stack item marked “pending”.
-- Point `og:image` / canonical URLs at the real domain.
+- Confirm every project status and any stack item marked **pending** (see `CONTENT-TODO.md`).
+- Point `og:image` / canonical URLs at the real domain if it changes.
 - Run `npm run build` and test the deployed form once.
 
 ---
 
 ## Performance & accessibility notes
 
-- Three.js is a fully separate, lazy chunk; the 3D scene is opt-in on small or touch-first devices, and the first-visit intro is skipped there too.
+- three.js is a fully separate, lazy chunk; the 3D scene is never loaded on small or touch-first devices.
 - Fonts are self-hosted through Fontsource; images are pre-optimised WebP/JPEG.
-- Scroll reveals are batched and off-screen work rows use `content-visibility` on mobile to cut layout cost.
+- CSS is hand-written and tree-shaken by hand — the production stylesheet is ~18 kB gzipped.
+- Scroll reveals use a single IntersectionObserver with a 2 s failsafe; off-screen work rows use `content-visibility` on mobile to cut layout cost.
 - All animation respects `prefers-reduced-motion`.
-- The scene is decorative but keyboard-operable; the same information is present in the surrounding copy.
-- Case art is CSS/SVG, so it costs no image requests. Only ACA Ministries uses real photography.
+- The 3D scene is decorative but keyboard-operable; the same information is present in the surrounding copy and in the visually-hidden door list.
 
 ---
 
@@ -153,8 +156,8 @@ The contact function only runs on Netlify as written. Elsewhere, either deploy a
 This portfolio only states what can be supported:
 
 - Only ACA Ministries uses real project photography and verified features.
-- The other seven projects use original abstract “case plates”, clearly labelled as such — never fake screenshots.
-- Stack items that could not be verified are marked “pending” rather than presented as confirmed.
+- The other seven projects use original abstract "case plates", clearly labelled as such — never fake screenshots.
+- Stack items that could not be verified are marked **pending** rather than presented as confirmed.
 - Project links say they have not been published yet instead of inventing URLs.
 - The contact form never reports success unless a backend accepted the message.
 

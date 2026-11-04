@@ -64,7 +64,7 @@ export default function CaseStudy() {
       <header className="case__hero">
         <div className="shell">
           <nav className="case__crumbs" aria-label="Breadcrumb">
-            <Link to="/#work">Selected work</Link>
+            <Link to="/projects">Selected work</Link>
             <span aria-hidden="true">/</span>
             <span>{project.number}</span>
           </nav>
@@ -251,7 +251,7 @@ export default function CaseStudy() {
             </span>
             <span>{previous.title}</span>
           </Link>
-          <Link to="/#work" className="case__pager-center caption">
+          <Link to="/projects" className="case__pager-center caption">
             All selected work
           </Link>
           <Link to={`/work/${next.slug}`} className="case__pager-link case__pager-link--next">

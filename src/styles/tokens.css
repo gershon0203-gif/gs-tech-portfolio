@@ -1,96 +1,145 @@
+/* ============================================================
+   GS TECH — THE TWO WORLDS
+   Light editorial + matte dark editorial.
+   Connected by the hanging rope theme toggle.
+   ============================================================ */
+
 :root {
-  /* Luxury palette — warm ivory, charcoal, soft stone, muted olive, warm grey */
-  --paper: #f5f3ee;
-  --paper-2: #e7e4dc;
-  --paper-3: #dbd8ce;
-  --ink: #22221f;
-  --ink-2: #3b3a35;
-  --muted: #77766f;
-  --olive: #85856b;
-  --line: rgba(34, 34, 31, 0.14);
-  --line-strong: rgba(34, 34, 31, 0.36);
+  /* ── WORLD 01 — LIGHT (default) ──
+     Pure white, warm ivory, soft grey, charcoal type, muted grey, silver. */
 
-  /* Dark canvas */
-  --charcoal: #20211f;
-  --charcoal-2: #282926;
-  --charcoal-3: #34332d;
-  --on-dark: #f2efe8;
-  --on-dark-muted: #b0a898;
-  --line-dark: rgba(242, 239, 232, 0.14);
-  --line-dark-strong: rgba(242, 239, 232, 0.36);
+  --world: light;
 
-  /* Accent — warm signal red */
-  --accent: #d8431c;
-  --accent-deep: #a62e0f;
-  --accent-bright: #ff5a30;
-  --accent-soft: #efc8b7;
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-2: #f8f7f3;
+  --bg-3: #e8e8e5;
+  --surface: #ffffff;
+  --surface-2: #f8f7f3;
 
-  /* Status */
-  --status-done: #466f52;
-  --status-live: #d8431c;
-  --status-proto: #967023;
-  --status-concept: #857c6f;
+  /* Type */
+  --fg: #242424;
+  --fg-2: #404040;
+  --fg-muted: #777777;
+  --fg-faint: #a8a8a8;
 
-  /* Type — editorial serif display + clean sans body */
+  /* Lines / hairlines */
+  --hairline: #e8e8e5;
+  --hairline-strong: #c8c8c8;
+
+  /* Accent (subtle pink/purple editorial signal) */
+  --accent: #7c3aed;
+  --accent-soft: rgba(124, 58, 237, 0.10);
+
+  /* Status tones (matte, editorial) */
+  --status-done: #7c3aed;
+  --status-live: #a78bfa;
+  --status-proto: #c084fc;
+  --status-concept: #e9d5ff;
+
+  /* Fonts */
   --font-display: 'Fraunces Variable', 'Instrument Serif', Georgia, serif;
   --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
   --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', Menlo, monospace;
+  --font-grotesk: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
 
   /* Fluid type */
-  --text-hero: clamp(3rem, 6vw, 7rem);
-  --text-display: clamp(2.6rem, 5vw, 5.4rem);
-  --text-h2: clamp(2.1rem, 4vw, 4.2rem);
-  --text-h3: clamp(1.4rem, 2vw, 2.1rem);
-  --text-h4: clamp(1.1rem, 1.35vw, 1.35rem);
-  --text-lead: clamp(1.02rem, 1.15vw, 1.22rem);
+  --text-hero: clamp(3.2rem, 7vw, 6.5rem);
+  --text-display: clamp(2.6rem, 5.2vw, 5rem);
+  --text-h2: clamp(2rem, 4vw, 4.2rem);
+  --text-h3: clamp(1.3rem, 2vw, 2rem);
+  --text-h4: clamp(1.1rem, 1.3vw, 1.3rem);
+  --text-lead: clamp(1rem, 1.1vw, 1.15rem);
   --text-body: clamp(0.95rem, 0.35vw + 0.84rem, 1.06rem);
-  --text-caption: clamp(0.66rem, 0.3vw + 0.6rem, 0.74rem);
+  --text-caption: clamp(0.64rem, 0.3vw + 0.58rem, 0.72rem);
 
   /* Space */
-  --gutter: clamp(20px, 4.2vw, 68px);
-  --shell: 1560px;
-  --col-gap: clamp(16px, 1.9vw, 32px);
-  --section-y: clamp(88px, 10.5vw, 168px);
-  --header-h: 74px;
+  --gutter: clamp(20px, 4.4vw, 72px);
+  --shell: 1600px;
+  --col-gap: clamp(16px, 1.9vw, 34px);
+  --section-y: clamp(96px, 11.5vw, 196px);
+  --header-h: 80px;
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
   --fast: 220ms;
   --mid: 480ms;
   --slow: 900ms;
 
-  /* z */
+  /* z-index scale */
   --z-header: 80;
   --z-progress: 95;
   --z-menu: 120;
-  --z-intro: 200;
+  --z-cursor: 600;
+  --z-rope: 500;
+  --z-transition: 700;
+
+  /* Doorway aliases (referenced by doorway.css) */
+  --dw-ease: var(--ease);
+  --dw-cyan: var(--hairline-strong);
+  --dw-white: var(--fg);
+  --dw-silver: var(--fg-muted);
 }
 
-.theme-dark {
-  --bg: var(--charcoal);
-  --fg: var(--on-dark);
-  --fg-muted: var(--on-dark-muted);
-  --hairline: var(--line-dark);
-  --hairline-strong: var(--line-dark-strong);
-  --focus: var(--accent-bright);
+/* ── WORLD 02 — DARK (matte charcoal, not neon) ── */
+[data-theme='dark'] {
+  --world: dark;
+
+  /* Surfaces */
+  --bg: #202124;
+  --bg-2: #292929;
+  --bg-3: #353535;
+  --surface: #202124;
+  --surface-2: #292929;
+
+  /* Type */
+  --fg: #f5f5f2;
+  --fg-2: #e8e8e5;
+  --fg-muted: #aaaaaa;
+  --fg-faint: #777777;
+
+  /* Lines / hairlines */
+  --hairline: #353535;
+  --hairline-strong: #777777;
+
+  /* Accent (subtle pink/purple editorial signal) */
+  --accent: #c084fc;
+  --accent-soft: rgba(192, 132, 252, 0.10);
+
+  /* Status tones (matte) */
+  --status-done: #c084fc;
+  --status-live: #d8b4fe;
+  --status-proto: #e9d5ff;
+  --status-concept: #5b21b6;
 }
 
-.theme-paper {
-  --bg: var(--paper);
-  --fg: var(--ink);
-  --fg-muted: var(--muted);
-  --hairline: var(--line);
-  --hairline-strong: var(--line-strong);
-  --focus: var(--accent-deep);
+/* Theme-agnostic semantic tokens */
+:root {
+  --ink: var(--fg);
+  --ink-2: var(--fg-2);
+  --muted: var(--fg-muted);
+  --line: var(--hairline);
+  --line-strong: var(--hairline-strong);
+  --focus: var(--accent);
+  --champagne: var(--hairline-strong);
+  --champagne-dim: var(--fg-faint);
 }
 
-.theme-paper-2 {
-  --bg: var(--paper-2);
-  --fg: var(--ink);
-  --fg-muted: #5f594e;
-  --hairline: rgba(34, 34, 31, 0.16);
-  --hairline-strong: rgba(34, 34, 31, 0.36);
-  --focus: var(--accent-deep);
+/* Status semantic aliases */
+:root {
+  --status-live-color: var(--status-live);
+  --status-done-color: var(--status-done);
+  --status-proto-color: var(--status-proto);
+  --status-concept-color: var(--status-concept);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: var(--world);
+  scrollbar-color: var(--hairline-strong) transparent;
+  background: var(--bg);
 }

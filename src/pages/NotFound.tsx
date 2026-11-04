@@ -22,7 +22,7 @@ export default function NotFound() {
             <ArrowLeft size={16} aria-hidden="true" />
             Back home
           </Link>
-          <Link to="/#work" className="btn btn--ghost">
+          <Link to="/projects" className="btn btn--ghost">
             View selected work
             <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
