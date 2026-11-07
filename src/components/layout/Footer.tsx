@@ -30,7 +30,7 @@ export function Footer() {
               <span className="serif">What is behind yours?</span>
             </h2>
           </div>
-          <Link to="/contact" className="footer-callout__cta" data-cursor="Open">
+          <Link to="/contact" className="footer-callout__cta" data-cursor="VIEW">
             <span>Open the last door</span>
             <ArrowUpRight size={30} strokeWidth={1.2} aria-hidden="true" />
           </Link>

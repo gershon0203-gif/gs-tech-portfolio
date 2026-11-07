@@ -138,7 +138,7 @@ export default function Projects() {
                   key={project.slug}
                   to={`/work/${project.slug}`}
                   className={`dw-plate dw-plate--compact dw-plate--${layout}`}
-                  data-cursor="Open"
+                  data-cursor="VIEW"
                   data-reveal
                 >
                   <span className="dw-plate__number" aria-hidden="true">

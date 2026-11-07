@@ -192,7 +192,7 @@ export default function Home() {
                 key={project.slug}
                 to={`/work/${project.slug}`}
                 className="tw-work-row"
-                data-cursor="Open"
+                data-cursor="VIEW"
               >
                 <span className="tw-work-row__index">{project.number}</span>
                 <div className="tw-work-row__copy">
