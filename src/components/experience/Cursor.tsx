@@ -26,6 +26,7 @@ export function Cursor() {
   const targetRef = useRef({ x: 0, y: 0 })
   const prevRef = useRef({ x: 0, y: 0 })
   const rafRef = useRef<number>(0)
+  const visibleRef = useRef(false)
   const stateRef = useRef<{ isView: boolean; isHover: boolean }>({
     isView: false,
     isHover: false,
@@ -42,14 +43,9 @@ export function Cursor() {
 
     document.documentElement.classList.add('has-custom-cursor')
 
-    // Theme-aware colors
-    const dotColor = theme === 'light' ? '#242424' : '#f5f5f2'
-    const ringBorderLight = 'rgba(36, 36, 36, 0.2)'
-    const ringBorderDark = 'rgba(245, 245, 242, 0.15)'
-    const ringBorder = theme === 'light' ? ringBorderLight : ringBorderDark
-
-    dot.style.backgroundColor = dotColor
-    root.style.borderColor = ringBorder
+    // Keep cursor hidden until the first pointer move.
+    root.style.opacity = '0'
+    visibleRef.current = false
 
     // --- Fluid motion loop (requestAnimationFrame) ---
     const lerp = (start: number, end: number, t: number) =>
@@ -92,6 +88,10 @@ export function Cursor() {
     const onMove = (event: PointerEvent) => {
       targetRef.current.x = event.clientX
       targetRef.current.y = event.clientY
+      if (!visibleRef.current) {
+        visibleRef.current = true
+        root.style.opacity = '1'
+      }
     }
 
     const onOver = (event: PointerEvent) => {
@@ -116,6 +116,8 @@ export function Cursor() {
     const onLeave = () => {
       stateRef.current.isView = false
       stateRef.current.isHover = false
+      visibleRef.current = false
+      root.style.opacity = '0'
       updateCursorState()
     }
 
